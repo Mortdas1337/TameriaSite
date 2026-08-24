@@ -19,15 +19,15 @@
             color: #fff;
         }
 
-        /* Güvenilir Silah Görseli Arka Planı */
+        /* Depodaki Kendi Resmin */
         .bg-image {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1585589039786-fac2cfac0340?q=80&w=1920') no-repeat center center/cover;
-            filter: brightness(0.25) contrast(1.3);
+            background: url('silah.jpg') no-repeat center center/cover;
+            filter: brightness(0.3) contrast(1.2);
             z-index: -2;
         }
 
@@ -37,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.9) 100%);
+            background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.85) 100%);
             z-index: -1;
         }
 
@@ -68,7 +68,6 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
         }
 
-        /* Kayıt Formu */
         .form-container {
             background: rgba(15, 15, 15, 0.9);
             border: 2px solid #ff3333;
@@ -163,7 +162,6 @@
         <h1>TAMERIA 1337</h1>
         <p class="slogan">HAKKEDENE HAKKINI VERİCEKSİN S1KER !</p>
 
-        <!-- E-Posta Destekli Kayıt & Destek Formu -->
         <div class="form-container">
             <h2>Kayıt & Destek Talebi</h2>
             <form id="ticketForm">
@@ -230,10 +228,10 @@
                 body: JSON.stringify(payload)
             }).then(response => {
                 if (response.ok) {
-                    alert('Talebiniz başarıyla alındı! Discord veya E-Posta üzerinden sizinle iletişime geçilecektir.');
+                    alert('Talebiniz başarıyla alındı!');
                     document.getElementById('ticketForm').reset();
                 } else {
-                    alert('Bir hata oluştu, lütfen tekrar deneyin.');
+                    alert('Bir hata oluştu.');
                 }
             }).catch(error => {
                 alert('Gönderim başarısız oldu.');
