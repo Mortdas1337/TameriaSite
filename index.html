@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tameria 1337 | İnfazhane</title>
-    <!-- Sekme Logosu (Base64 Dahili) -->
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==">
+    <!-- Sekme Logosu -->
+    <link rel="icon" type="image/png" href="arkaplan.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body, html { height: 100%; overflow-x: hidden; background-color: #000; color: #fff; }
         
-        /* Arka Plan Resmi - Dahili Base64 ile %100 Garanti Yükleme */
+        /* Arka Plan Görseli - Sabit ve Tam Ekran */
         .bg-fixed-img {
             position: fixed;
             top: 0;
@@ -18,57 +18,56 @@
             width: 100vw;
             height: 100vh;
             object-fit: cover;
-            filter: brightness(0.65) contrast(1.1);
             z-index: -2;
         }
 
+        /* Tasarımın kendi görselliği koyu olduğu için ekstra karartmaya gerek yok, hafif bir parlaklık dengesi verdik */
         .overlay { 
             position: fixed; 
             top: 0; 
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background: rgba(0, 0, 0, 0.6); 
+            background: rgba(0, 0, 0, 0.25); 
             z-index: -1; 
         }
 
-        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 40px 20px; position: relative; z-index: 1; }
-        
-        h1 { 
-            font-size: 3rem; 
-            text-transform: uppercase; 
-            letter-spacing: 4px; 
-            color: #ff3333; 
-            text-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 1); 
-            margin-bottom: 10px; 
+        .container { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            text-align: center; 
+            padding: 40px 20px; 
+            position: relative; 
+            z-index: 1; 
         }
-
-        p.slogan { 
-            font-size: 1.2rem; 
-            color: #ddd; 
-            max-width: 600px; 
-            margin-bottom: 25px; 
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); 
+        
+        /* Başlıklar arkaplandaki görsele entegre olduğu için buradaki metinleri gizleyip sadece formu ve butonu bırakıyoruz, istersen açabilirsin ama görselin üstünde yazı zaten var */
+        .header-content {
+            margin-bottom: 20px;
         }
 
         .form-container { 
-            background: rgba(15, 15, 15, 0.85); 
-            border: 2px solid #ff3333; 
-            border-radius: 10px; 
+            background: rgba(12, 12, 12, 0.85); 
+            border: 2px solid #ff1a1a; 
+            border-radius: 8px; 
             padding: 25px; 
             width: 100%; 
-            max-width: 450px; 
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4); 
-            margin-bottom: 25px; 
-            backdrop-filter: blur(5px);
+            max-width: 480px; 
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.3); 
+            margin-bottom: 20px; 
+            backdrop-filter: blur(4px);
         }
 
         .form-container h2 { 
-            font-size: 1.4rem; 
-            color: #ff4d4d; 
-            margin-bottom: 15px; 
+            font-size: 1.3rem; 
+            color: #ff3333; 
+            margin-bottom: 20px; 
             text-transform: uppercase; 
-            letter-spacing: 1px; 
+            letter-spacing: 2px; 
+            text-align: center;
         }
 
         .form-group { 
@@ -78,17 +77,19 @@
 
         .form-group label { 
             display: block; 
-            font-size: 0.9rem; 
-            color: #ccc; 
+            font-size: 0.8rem; 
+            color: #aaa; 
             margin-bottom: 5px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .form-group input, .form-group textarea { 
             width: 100%; 
-            padding: 10px; 
-            background: rgba(30, 30, 30, 0.9); 
-            border: 1px solid #444; 
-            border-radius: 5px; 
+            padding: 12px; 
+            background: rgba(18, 18, 18, 0.95); 
+            border: 1px solid #333; 
+            border-radius: 4px; 
             color: #fff; 
             font-size: 0.95rem; 
             outline: none; 
@@ -96,57 +97,63 @@
 
         .form-group input:focus, .form-group textarea:focus { 
             border-color: #ff3333; 
-            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); 
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.5); 
         }
 
         .submit-btn { 
             width: 100%; 
-            background: #ff3333; 
+            background: linear-gradient(to bottom, #990000, #4d0000); 
             color: #fff; 
-            border: none; 
-            padding: 12px; 
+            border: 1px solid #ff1a1a; 
+            padding: 14px; 
             font-size: 1rem; 
             font-weight: bold; 
-            border-radius: 5px; 
+            border-radius: 4px; 
             cursor: pointer; 
             transition: 0.3s; 
             text-transform: uppercase; 
             margin-top: 10px; 
+            letter-spacing: 1px;
         }
 
         .submit-btn:hover { 
-            background: #cc0000; 
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7); 
+            background: linear-gradient(to bottom, #cc0000, #660000); 
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); 
         }
 
         .discord-btn { 
-            background: #5865F2; 
+            background: rgba(15, 15, 25, 0.9); 
             color: #fff; 
             text-decoration: none; 
-            padding: 12px 30px; 
-            font-size: 1rem; 
+            padding: 12px 25px; 
+            font-size: 0.95rem; 
             font-weight: bold; 
             border-radius: 6px; 
+            border: 1px solid #5865F2;
             display: inline-block; 
-            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4); 
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.3); 
             transition: 0.3s; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .discord-btn:hover { 
-            background: #4752C4; 
+            background: #5865F2; 
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
             transform: translateY(-2px); 
         }
     </style>
 </head>
 <body>
 
-    <!-- Arka Plan Görseli (Kod İçine Gömülü Base64) -->
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==" id="bgImage" class="bg-fixed-img" alt="Arka Plan">
+    <!-- Arka Plan Görseli -->
+    <img src="arkaplan.png" class="bg-fixed-img" alt="İnfazhane Arka Plan">
     <div class="overlay"></div>
 
     <div class="container">
-        <h1>TAMERIA 1337</h1>
-        <p class="slogan">HAKKEDENE HAKKINI VERİCEKSİN S1KER !</p>
+        <!-- Not: Arka plandaki görselin üstünde zaten TAMERIA 1337 yazısı olduğu için, 
+             metinlerin üst üste binip çorba olmaması adına başlığı görseldeki konuma denk gelecek şekilde aşağı kaydırdık. -->
+        <div style="height: 120px;"></div>
 
         <div class="form-container">
             <h2>Kayıt & Destek Talebi</h2>
@@ -176,11 +183,6 @@
     </div>
 
     <script>
-        // Senin attığın görselin gerçek Base64 verisi (Artık dosya aramaya son, doğrudan çalışır)
-        const realImageBase64 = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==";
-        // Not: Yukarıdaki geçici yer tutucu yerine görselini doğrudan sisteme gömmek için Discord webhook veya harici link kullanabiliriz ya da görseli yüklediğin sunucu linkini src'ye yapıştırabilirsin. 
-        // Eğer dosyayı bilgisayarda açıyorsan Live Server (VS Code eklentisi) kullanarak açman tarayıcı kısıtlamalarını aşmanı sağlar!
-        
         function sendToDiscord(event) {
             event.preventDefault();
 
@@ -194,7 +196,7 @@
             const payload = {
                 content: "🚨 **YENİ KAYIT / DESTEK TALEBİ GELDİ!** 🚨",
                 embeds: [{
-                    title: "Tameria 1337 Formu",
+                    title: "Tameria 1337 İnfazhane Formu",
                     color: 16711680,
                     fields: [
                         { name: "Kullanıcı Adı", value: username, inline: true },
@@ -202,7 +204,7 @@
                         { name: "Discord", value: discord, inline: true },
                         { name: "Talep / İstek", value: request }
                     ],
-                    footer: { text: "Tameria 1337 Sistem" }
+                    footer: { text: "Tameria 1337 İnfazhane Sistemi" }
                 }]
             };
 
