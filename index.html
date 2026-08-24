@@ -116,6 +116,13 @@
             box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
         }
 
+        .error-msg {
+            color: #ff4d4d;
+            font-size: 0.8rem;
+            margin-top: 5px;
+            display: none;
+        }
+
         .submit-btn {
             width: 100%;
             background: #ff3333;
@@ -173,6 +180,7 @@
                 <div class="form-group">
                     <label for="email">E-Posta Adresiniz</label>
                     <input type="email" id="email" placeholder="ornek@gmail.com" required>
+                    <div id="emailError" class="error-msg">Geçici veya sahte e-posta adresi kullanılamaz!</div>
                 </div>
                 <div class="form-group">
                     <label for="discord">Discord Adresiniz</label>
@@ -192,15 +200,34 @@
     </div>
 
     <script>
+        // Bilinen sahte/geçici e-posta alan adları listesi
+        const fakeEmailDomains = [
+            "tempmail.com", "10minutemail.com", "guerrillamail.com", "sharklasers.com",
+            "mailinator.com", "yopmail.com", "dispostable.com", "getnada.com", 
+            "trashmail.com", "temp-mail.org", "crazymailing.com", "maildrop.cc"
+        ];
+
         document.getElementById('ticketForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
             const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
+            const email = document.getElementById('email').value.toLowerCase().trim();
             const discord = document.getElementById('discord').value;
             const request = document.getElementById('request').value;
+            const emailError = document.getElementById('emailError');
 
-            // Hazır Webhook Adresin
+            // E-posta Etki Alanı Kontrolü
+            const domain = email.split('@')[1];
+            
+            if (fakeEmailDomains.includes(domain)) {
+                emailError.style.display = "block";
+                alert("Lütfen gerçek bir e-posta adresi girin! Geçici servisler yasaktır.");
+                return;
+            } else {
+                emailError.style.display = "none";
+            }
+
+            // Webhook Adresin
             const webhookURL = "https://discord.com/api/webhooks/1541361852607369276/Fduk90-hBnW8N2fs4LlAZbgJrjoONq0pXkqmNU1eimxYyOkpv-5E9D27weIDahdLRpkh";
 
             const payload = {
@@ -210,7 +237,7 @@
                     color: 16711680,
                     fields: [
                         { name: "Kullanıcı Adı", value: username, inline: true },
-                        { name: "E-Posta", value: email, inline: true },
+                        { name: "E-Posta (Doğrulanmış)", value: email, inline: true },
                         { name: "Discord", value: discord, inline: true },
                         { name: "Talep / İstek", value: request }
                     ],
