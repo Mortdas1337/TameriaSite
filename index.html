@@ -19,14 +19,14 @@
             color: #fff;
         }
 
-        /* Arka Plan Korkutucu Silah Görseli */
+        /* Güvenilir Silah Görseli Arka Planı */
         .bg-image {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://images.unsplash.com/photo-1595590424283-b8f17842773f?q=80&w=1920') no-repeat center center/cover;
+            background: url('https://images.unsplash.com/photo-1585589039786-fac2cfac0340?q=80&w=1920') no-repeat center center/cover;
             filter: brightness(0.25) contrast(1.3);
             z-index: -2;
         }
@@ -68,7 +68,7 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
         }
 
-        /* Kayıt & Destek Formu */
+        /* Kayıt Formu */
         .form-container {
             background: rgba(15, 15, 15, 0.9);
             border: 2px solid #ff3333;
@@ -135,7 +135,6 @@
             box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
         }
 
-        /* Discord Butonu */
         .discord-btn {
             background: #5865F2;
             color: #fff;
@@ -164,13 +163,17 @@
         <h1>TAMERIA 1337</h1>
         <p class="slogan">HAKKEDENE HAKKINI VERİCEKSİN S1KER !</p>
 
-        <!-- Kayıt & Destek Formu -->
+        <!-- E-Posta Destekli Kayıt & Destek Formu -->
         <div class="form-container">
             <h2>Kayıt & Destek Talebi</h2>
             <form id="ticketForm">
                 <div class="form-group">
                     <label for="username">Kullanıcı Adı / Oyun İçi İsim</label>
                     <input type="text" id="username" placeholder="İsminizi girin" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Posta Adresiniz</label>
+                    <input type="email" id="email" placeholder="ornek@gmail.com" required>
                 </div>
                 <div class="form-group">
                     <label for="discord">Discord Adresiniz</label>
@@ -180,7 +183,7 @@
                     <label for="request">Ne İstiyorsunuz? (Destek / Talebiniz)</label>
                     <textarea id="request" rows="3" placeholder="İsteğinizi veya talebinizi detaylıca yazın..." required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Talebi Gönder</button>
+                <button type="submit" class="submit-btn">Kayıt Ol & Gönder</button>
             </form>
         </div>
 
@@ -194,6 +197,7 @@
             e.preventDefault();
 
             const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
             const discord = document.getElementById('discord').value;
             const request = document.getElementById('request').value;
 
@@ -208,10 +212,11 @@
             const payload = {
                 content: "🚨 **YENİ KAYIT & DESTEK TALEBİ GELDİ!** 🚨",
                 embeds: [{
-                    title: "Tameria 1337 Destek Formu",
+                    title: "Tameria 1337 Destek & Kayıt Formu",
                     color: 16711680,
                     fields: [
                         { name: "Kullanıcı Adı", value: username, inline: true },
+                        { name: "E-Posta", value: email, inline: true },
                         { name: "Discord", value: discord, inline: true },
                         { name: "Talep / İstek", value: request }
                     ],
@@ -225,7 +230,7 @@
                 body: JSON.stringify(payload)
             }).then(response => {
                 if (response.ok) {
-                    alert('Talebiniz başarıyla alındı! Discord üzerinden sizinle iletişime geçilecektir.');
+                    alert('Talebiniz başarıyla alındı! Discord veya E-Posta üzerinden sizinle iletişime geçilecektir.');
                     document.getElementById('ticketForm').reset();
                 } else {
                     alert('Bir hata oluştu, lütfen tekrar deneyin.');
