@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tameria 1337 | Minecraft Sunucusu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Arka Plan Korkunç Videosu */
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            object-fit: cover;
+            filter: brightness(0.35) contrast(1.2);
+        }
+
+        /* Videonun üzerindeki karartma katmanı */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: -1;
+        }
+
+        /* Ortadaki İçerik Kutusu */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Sunucu Logosu */
+        .logo {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.8));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Başlıklar */
+        h1 {
+            font-size: 3.2rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #ff3333;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 1);
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: #ddd;
+            max-width: 650px;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+            line-height: 1.6;
+        }
+
+        /* IP Kopyalama Kutusu */
+        .ip-box {
+            background: rgba(20, 20, 20, 0.85);
+            border: 2px solid #ff3333;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .ip-box:hover {
+            background: rgba(50, 0, 0, 0.9);
+            border-color: #ff6666;
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+        }
+
+        /* Discord Butonu */
+        .discord-btn {
+            background: #5865F2;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 36px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .discord-btn:hover {
+            background: #4752C4;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(88, 101, 242, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Arka Plan Korkunç/Karanlık Orman Videosu -->
+    <video autoplay muted loop id="bg-video">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-dark-and-foggy-forest-4286-large.mp4" type="video/mp4">
+    </video>
+    
+    <div class="overlay"></div>
+
+    <div class="container">
+        <!-- Logo -->
+        <img src="https://via.placeholder.com/200x200/ff0000/ffffff?text=TAMERIA+1337" alt="Tameria 1337 Logo" class="logo">
+
+        <h1>TAMERIA 1337</h1>
+        <p>Karanlığa adım atmaya hazır mısın? Türkiye'nin en gizemli ve iddialı Minecraft sunucusu seni bekliyor.</p>
+
+        <!-- IP Kopyalama Kutusu -->
+        <div class="ip-box" onclick="copyIP()">
+            IP: <span id="ip">play.tameria1337.com</span> (Tıkla & Kopyala)
+        </div>
+
+        <!-- Discord Butonu -->
+        <a href="https://discord.gg/7naK5EMGFN" target="_blank" class="discord-btn">
+            Discord Sunucumuza Katıl
+        </a>
+    </div>
+
+    <script>
+        function copyIP() {
+            const ipText = document.getElementById("ip").innerText;
+            navigator.clipboard.writeText(ipText);
+            alert("Sunucu IP adresi kopyalandı: " + ipText);
+        }
+    </script>
+
+</body>
+</html>
