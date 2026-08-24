@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tameria 1337 | Minecraft Sunucusu</title>
+    <title>Tameria 1337 | İnfazhane</title>
     <style>
         * {
             margin: 0;
@@ -14,23 +14,21 @@
 
         body, html {
             height: 100%;
-            overflow: hidden;
+            overflow-x: hidden;
             background-color: #000;
             color: #fff;
         }
 
-        /* Arka Plan Videosu */
-        #bg-video {
+        /* Arka Plan Korkutucu Silah Görseli */
+        .bg-image {
             position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1595590424283-b8f17842773f?q=80&w=1920') no-repeat center center/cover;
+            filter: brightness(0.25) contrast(1.3);
             z-index: -2;
-            object-fit: cover;
-            filter: brightness(0.35) contrast(1.2);
         }
 
         .overlay {
@@ -39,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.9) 100%);
             z-index: -1;
         }
 
@@ -48,117 +46,194 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
-            padding: 20px;
-        }
-
-        .logo {
-            max-width: 220px;
-            height: auto;
-            margin-bottom: 25px;
-            filter: drop-shadow(0 0 20px rgba(255, 0, 0, 0.8));
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
+            padding: 40px 20px;
         }
 
         h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             text-transform: uppercase;
             letter-spacing: 4px;
             color: #ff3333;
             text-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 1);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
-        p {
-            font-size: 1.25rem;
+        p.slogan {
+            font-size: 1.2rem;
             color: #ddd;
-            max-width: 650px;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-            line-height: 1.6;
-        }
-
-        .ip-box {
-            background: rgba(20, 20, 20, 0.85);
-            border: 2px solid #ff3333;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-size: 1.15rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: #fff;
+            max-width: 600px;
             margin-bottom: 25px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+        }
+
+        /* Kayıt & Destek Formu */
+        .form-container {
+            background: rgba(15, 15, 15, 0.9);
+            border: 2px solid #ff3333;
+            border-radius: 10px;
+            padding: 25px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+            margin-bottom: 25px;
+        }
+
+        .form-container h2 {
+            font-size: 1.4rem;
+            color: #ff4d4d;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #ff3333;
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #ff3333;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: 0.3s;
+            text-transform: uppercase;
         }
 
-        .ip-box:hover {
-            background: rgba(50, 0, 0, 0.9);
-            border-color: #ff6666;
-            box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+        .submit-btn:hover {
+            background: #cc0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
         }
 
+        /* Discord Butonu */
         .discord-btn {
             background: #5865F2;
             color: #fff;
             text-decoration: none;
-            padding: 15px 36px;
-            font-size: 1.15rem;
+            padding: 12px 30px;
+            font-size: 1rem;
             font-weight: bold;
-            border-radius: 8px;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.5);
-            transition: all 0.3s ease;
+            border-radius: 6px;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+            transition: 0.3s;
         }
 
         .discord-btn:hover {
             background: #4752C4;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(88, 101, 242, 0.7);
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
 
-    <!-- Çalışan Doğrudan Video Bağlantısı -->
-    <video autoplay muted loop id="bg-video">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-lightning-in-a-dark-sky-41586-large.mp4" type="video/mp4">
-    </video>
-    
+    <div class="bg-image"></div>
     <div class="overlay"></div>
 
     <div class="container">
-        <!-- Logo -->
-        <img src="logo.gif" alt="Tameria 1337 Logo" class="logo">
-
         <h1>TAMERIA 1337</h1>
-        <p>HAKKEDENE HAKKINI VERİCEKSİN S1KER !</p>
+        <p class="slogan">HAKKEDENE HAKKINI VERİCEKSİN S1KER !</p>
 
-        <!-- IP Kopyalama Kutusu -->
-        <div class="ip-box" onclick="copyIP()">
-            <span id="ip">MORTDAS1337 #İNFAZHANE</span>
+        <!-- Kayıt & Destek Formu -->
+        <div class="form-container">
+            <h2>Kayıt & Destek Talebi</h2>
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label for="username">Kullanıcı Adı / Oyun İçi İsim</label>
+                    <input type="text" id="username" placeholder="İsminizi girin" required>
+                </div>
+                <div class="form-group">
+                    <label for="discord">Discord Adresiniz</label>
+                    <input type="text" id="discord" placeholder="Örn: mortdas1337" required>
+                </div>
+                <div class="form-group">
+                    <label for="request">Ne İstiyorsunuz? (Destek / Talebiniz)</label>
+                    <textarea id="request" rows="3" placeholder="İsteğinizi veya talebinizi detaylıca yazın..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Talebi Gönder</button>
+            </form>
         </div>
 
-        <!-- Discord Butonu -->
         <a href="https://discord.gg/7naK5EMGFN" target="_blank" class="discord-btn">
             Discord Sunucumuza Katıl
         </a>
     </div>
 
     <script>
-        function copyIP() {
-            const ipText = document.getElementById("ip").innerText;
-            navigator.clipboard.writeText(ipText);
-            alert("Metin kopyalandı: " + ipText);
-        }
+        document.getElementById('ticketForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const discord = document.getElementById('discord').value;
+            const request = document.getElementById('request').value;
+
+            // DISCORD WEBHOOK LINKINI BURAYA YAPIŞTIR
+            const webhookURL = "DISCORD_WEBHOOK_LINKINIZ_BURAYA";
+
+            if(webhookURL === "DISCORD_WEBHOOK_LINKINIZ_BURAYA") {
+                alert("Lütfen koddaki Webhook bağlantısını ayarlayın!");
+                return;
+            }
+
+            const payload = {
+                content: "🚨 **YENİ KAYIT & DESTEK TALEBİ GELDİ!** 🚨",
+                embeds: [{
+                    title: "Tameria 1337 Destek Formu",
+                    color: 16711680,
+                    fields: [
+                        { name: "Kullanıcı Adı", value: username, inline: true },
+                        { name: "Discord", value: discord, inline: true },
+                        { name: "Talep / İstek", value: request }
+                    ],
+                    footer: { text: "Tameria 1337 Web Destek Sistemi" }
+                }]
+            };
+
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).then(response => {
+                if (response.ok) {
+                    alert('Talebiniz başarıyla alındı! Discord üzerinden sizinle iletişime geçilecektir.');
+                    document.getElementById('ticketForm').reset();
+                } else {
+                    alert('Bir hata oluştu, lütfen tekrar deneyin.');
+                }
+            }).catch(error => {
+                alert('Gönderim başarısız oldu.');
+            });
+        });
     </script>
 
 </body>
