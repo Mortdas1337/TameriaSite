@@ -10,15 +10,29 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body, html { height: 100%; overflow-x: hidden; background-color: #000; color: #fff; }
         
-        /* Arka Plan Silah Görseli (Garanti Çalışan / Dahili) */
-        .bg-image {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1595590424283-b8f17842773f?q=80&w=1920&auto=format&fit=crop') no-repeat center center / cover;
+        /* Arka Planı Resim Elementi Olarak Sabitleme (Kesin Çözüm) */
+        .bg-fixed-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            filter: brightness(0.35) contrast(1.2);
             z-index: -2;
         }
 
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%); z-index: -1; }
-        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 40px 20px; }
+        .overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(0, 0, 0, 0.75); 
+            z-index: -1; 
+        }
+
+        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 40px 20px; position: relative; z-index: 1; }
         h1 { font-size: 3rem; text-transform: uppercase; letter-spacing: 4px; color: #ff3333; text-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 1); margin-bottom: 10px; }
         p.slogan { font-size: 1.2rem; color: #ddd; max-width: 600px; margin-bottom: 25px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9); }
         .form-container { background: rgba(15, 15, 15, 0.9); border: 2px solid #ff3333; border-radius: 10px; padding: 25px; width: 100%; max-width: 450px; box-shadow: 0 0 25px rgba(255, 0, 0, 0.4); margin-bottom: 25px; }
@@ -35,7 +49,8 @@
 </head>
 <body>
 
-    <div class="bg-image"></div>
+    <!-- ARKA PLAN RESMİ (HTML Elementi Olarak Garanti Yüklenir) -->
+    <img src="https://images.unsplash.com/photo-1595590424283-b8f17842773f?q=80&w=1920&auto=format&fit=crop" class="bg-fixed-img" alt="Arka Plan">
     <div class="overlay"></div>
 
     <div class="container">
@@ -79,10 +94,10 @@
     </div>
 
     <script>
-        // EMAILJS BILGILERIN (Kendi Public Key ve Template ID'ni buraya yazmayı unutma):
-        const EMAILJS_PUBLIC_KEY = "BURAYA_PUBLIC_KEY";  
+        // EmailJS Bilgilerin (Kendi Public Key ve Template ID'ni yazmayı unutma):
+        const EMAILJS_PUBLIC_KEY = "mZ1ALNRygCOc5xqAr";  
         const EMAILJS_SERVICE_ID = "service_wvn7wtn";    
-        const EMAILJS_TEMPLATE_ID = "BURAYA_TEMPLATE_ID"; 
+        const EMAILJS_TEMPLATE_ID = "template_54nas28"; 
 
         emailjs.init(EMAILJS_PUBLIC_KEY);
 
