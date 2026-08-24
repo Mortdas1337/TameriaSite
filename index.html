@@ -19,7 +19,7 @@
             color: #fff;
         }
 
-        /* Çalışan Silah Görseli (Wikimedia CDN) */
+        /* Çalışan Silah Görseli */
         .bg-image {
             position: fixed;
             top: 0;
@@ -200,13 +200,8 @@
             const discord = document.getElementById('discord').value;
             const request = document.getElementById('request').value;
 
-            // DISCORD WEBHOOK LINKINI BURAYA YAPIŞTIR
+            // Hazır Webhook Adresin
             const webhookURL = "https://discord.com/api/webhooks/1541361852607369276/Fduk90-hBnW8N2fs4LlAZbgJrjoONq0pXkqmNU1eimxYyOkpv-5E9D27weIDahdLRpkh";
-
-            if(webhookURL === "https://discord.com/api/webhooks/1541361852607369276/Fduk90-hBnW8N2fs4LlAZbgJrjoONq0pXkqmNU1eimxYyOkpv-5E9D27weIDahdLRpkh") {
-                alert("Lütfen koddaki Webhook bağlantısını ayarlayın!");
-                return;
-            }
 
             const payload = {
                 content: "🚨 **YENİ KAYIT & DESTEK TALEBİ GELDİ!** 🚨",
@@ -229,10 +224,10 @@
                 body: JSON.stringify(payload)
             }).then(response => {
                 if (response.ok) {
-                    alert('Talebiniz başarıyla alındı!');
+                    alert('Talebiniz başarıyla alındı! Discord kanalınıza bildirildi.');
                     document.getElementById('ticketForm').reset();
                 } else {
-                    alert('Bir hata oluştu.');
+                    alert('Bir hata oluştu, Webhook bağlantısını kontrol edin.');
                 }
             }).catch(error => {
                 alert('Gönderim başarısız oldu.');
