@@ -19,7 +19,7 @@
             color: #fff;
         }
 
-        /* Arka Plan Korkunç Videosu */
+        /* Arka Plan Şimşek Videosu */
         #bg-video {
             position: fixed;
             right: 0;
@@ -33,7 +33,7 @@
             filter: brightness(0.35) contrast(1.2);
         }
 
-        /* Videonun üzerindeki karartma katmanı */
+        /* Karartma katmanı */
         .overlay {
             position: fixed;
             top: 0;
@@ -44,7 +44,7 @@
             z-index: -1;
         }
 
-        /* Ortadaki İçerik Kutusu */
+        /* İçerik Kutusu */
         .container {
             display: flex;
             flex-direction: column;
@@ -134,23 +134,23 @@
 </head>
 <body>
 
-    <!-- Arka Plan Korkunç/Karanlık Orman Videosu -->
+    <!-- Arka Plan Şimşekli Gece Videosu -->
     <video autoplay muted loop id="bg-video">
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-dark-and-foggy-forest-4286-large.mp4" type="video/mp4">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-lightning-in-a-dark-sky-41586-large.mp4" type="video/mp4">
     </video>
     
     <div class="overlay"></div>
 
     <div class="container">
-        <!-- Logo -->
-        <img src="file:///C:/Users/ungor/OneDrive/Desktop/!/Tameria%20Logo/Tameria%20Logo.gif" alt="Tameria 1337 Logo" class="logo">
+        <!-- Depoya Yüklediğin GIF Logo -->
+        <img src="logo.gif" alt="Tameria 1337 Logo" class="logo">
 
         <h1>TAMERIA 1337</h1>
         <p>HAKKEDENE HAKKINI VERİCEKSİN S1KER !</p>
 
         <!-- IP Kopyalama Kutusu -->
         <div class="ip-box" onclick="copyIP()">
-            IP: <span id="ip">MORTDAS1337 #İNFAZHANE
+            <span id="ip">MORTDAS1337 #İNFAZHANE</span>
         </div>
 
         <!-- Discord Butonu -->
@@ -163,7 +163,7 @@
         function copyIP() {
             const ipText = document.getElementById("ip").innerText;
             navigator.clipboard.writeText(ipText);
-            alert("Sunucu IP adresi kopyalandı: " + ipText);
+            alert("Metin kopyalandı: " + ipText);
         }
     </script>
 
